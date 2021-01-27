@@ -14,4 +14,4 @@ print(y_test.shape)
 
 model = DecisionTreeClassifier()
 model.fit(X_train, y_train)
-print(model.score(X_test, y_test))
+print(model.score(X_test, y_test))  # 0.8367003367003367
