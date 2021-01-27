@@ -2,10 +2,9 @@ from keras.datasets import mnist
 from keras.models import Sequential
 from keras.layers import Dense
 import numpy as np
-
-# get data
 from keras.utils import to_categorical
 
+# get data
 X_train = mnist.load_data()[0][0]
 y_train = mnist.load_data()[0][1]
 print(X_train.shape)
