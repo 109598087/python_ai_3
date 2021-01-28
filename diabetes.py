@@ -35,7 +35,7 @@ model.compile(optimizer=Adam(learning_rate=0.01), loss='categorical_crossentropy
 
 history = model.fit(X_train.reshape(X_train.shape[0], X_train.shape[1]), to_categorical(y_train),
                     batch_size=10,
-                    epochs=30,
+                    epochs=5,
                     verbose=2,  # 顯示過程
                     validation_split=0.2)
 
@@ -69,21 +69,32 @@ from keras.models import model_from_json
 
 # save model
 json_string = model.to_json()
-with open("model.confug", "w") as text_file:
+with open("model.config", "w") as text_file:
     text_file.write(json_string)
 # save W
 model.save_weights('model.weight')
 # save model and W
 model.save('model.h5')
 
-# 模型載入
-import numpy as np
-from keras.models import Sequential
-from keras.models import model_from_json
+print('config = ', model.get_config())
+print('weights = ', model.get_weights())
+print('summary = ', model.summary())
+print('layer = ', model.get_layer(index=1).name)
+for l in model.layers:
+    print(l.name)
+print('params = ', model.count_params())
 
-# load model
-with open('model.config', 'r') as text_file:
-    json_string = text_file.read()
-model = model_from_json(json_string)
-# load weights
-model.load_weights('model.weight', by_name=False)
+# # 模型載入
+# import numpy as np
+# from keras.models import Sequential
+# from keras.models import model_from_json
+#
+# # load model
+# with open('model.config', 'r') as text_file:
+#     json_string = text_file.read()
+# model = model_from_json(json_string)
+# # load weights
+# model.load_weights('model.weight', by_name=False)
+#
+# weihgts = model.get_weights()
+# print(weihgts)
