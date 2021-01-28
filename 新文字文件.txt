@@ -1,0 +1,2 @@
+model.compile(loss='categorical_crossentropy') 分類
+model.compile(loss='mse') 回歸

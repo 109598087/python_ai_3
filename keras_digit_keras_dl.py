@@ -3,6 +3,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 import numpy as np
 from keras.utils import to_categorical
+from keras.optimizers import Adam
 
 # get data
 X_train = mnist.load_data()[0][0]
@@ -20,7 +21,7 @@ model.add(Dense(128, activation='relu', input_shape=(28 * 28,)))  # input_data�
 model.add(Dense(10, activation='softmax'))  # 128(神經元)輸出 --> 多(0-9)選一
 model.summary()
 
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=Adam(learning_rate=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
 
 model.fit(X_train.reshape(60000, 28 * 28), to_categorical(y_train),
           batch_size=1000,
